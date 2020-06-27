@@ -10,4 +10,6 @@ RUN mvn install
 
 FROM openjdk:8-jre-alpine
 WORKDIR /SpringBootHelloWorld
-COPY --from=1 /SpringBootHelloWorld/target/SpringBootHelloWorld-0.0.1-SNAPSHOT.jar /SpringBootHelloWorld.jar
+COPY --from=maven-build /SpringBootHelloWorld/target/SpringBootHelloWorld-0.0.1-SNAPSHOT.jar /usr/local/SpringBootHelloWorld.jar
+EXPOSE 8085 
+CMD ["java", "-jar", "SpringBootHelloWorld.jar"]
